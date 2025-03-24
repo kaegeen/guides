@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide Posting Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white flex flex-col items-center h-screen py-10">
+    <h1 class="text-2xl font-bold mb-6">Post Your Guide</h1>
+    
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md text-center">
+        <input id="guideTitle" type="text" placeholder="Guide Title" class="p-2 text-black w-full rounded-md mb-4">
+        <textarea id="guideContent" placeholder="Write your guide here..." class="p-2 text-black w-full rounded-md mb-4 h-32"></textarea>
+        <button onclick="postGuide()" class="bg-green-500 px-6 py-2 text-white rounded-md hover:bg-green-700">Post Guide</button>
+        
+        <div id="postedGuides" class="mt-6 text-left w-full"></div>
+    </div>
+
+    <script>
+        function postGuide() {
+            const title = document.getElementById("guideTitle").value.trim();
+            const content = document.getElementById("guideContent").value.trim();
+            
+            if (!title || !content) return;
+            
+            const guideList = document.getElementById("postedGuides");
+            const guideItem = document.createElement("div");
+            guideItem.classList.add("bg-blue-500", "text-white", "p-4", "rounded", "mb-4");
+            guideItem.innerHTML = `<h2 class='font-bold'>${title}</h2><p>${content}</p>`;
+            
+            guideList.prepend(guideItem);
+            document.getElementById("guideTitle").value = "";
+            document.getElementById("guideContent").value = "";
+        }
+    </script>
+</body>
+</html>
